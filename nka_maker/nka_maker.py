@@ -32,8 +32,10 @@ class NkaFile:
     def generate_first_line(self):
         if self.column_type == "#text":
             return "!" + self.nka_arr_name
-        elif self.column_type == "#numbers":
+        elif self.column_type == "#int":
             return "%" + self.nka_arr_name
+        elif self.column_type == "#real":
+            return "?" + self.nka_arr_name
         else:
             return ""
 
@@ -51,8 +53,8 @@ def exit_message_status(message, success):
 
 #checks if column type is valid or not
 def type_checker(type, column_text, file):
-    if type not in ["#numbers", "#text", "#none"]:
-        exit_message_status(f'The type: "{type}" of the "{column_text}" column, in the file "{file}.csv" is not a valid type, please use one of the following types:\n- #text \n- #numbers \n- #none', 0)
+    if type not in ["#int", "#real", "#text", "#none"]:
+        exit_message_status(f'The type: "{type}" of the "{column_text}" column, in the file "{file}.csv" is not a valid type, please use one of the following types:\n- #text \n- #int \n- #real \n- #none', 0)
 
 #checks if entered command line arguments are valid and existing .csv files
 def check_args_format_existence(csv_files_list):
